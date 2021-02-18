@@ -162,8 +162,27 @@ section {
     align-items: center;
 }
 
+ul{
+    margin-bottom: 0;
+}
+.fa{
+    font-size: 1.5em;
+}
+
 .footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
     background: #000000;
+    color: #ffffff;
+    text-align: center;
+    min-height: 200px;
+}
+.footer a{
+    color: #ffffff;
 }
 
 @media (max-width: 575.98px) {

@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scrollreveal.js"></script>
     <title>Sebastián Reyes</title>
 </head>
 
@@ -16,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
-                <span class="navbar-brand mb-0 h1"><b>Sebastián Reyes</b></span>
+                <a href="#home" class="navbar-brand mb-0 h1"><b>Sebastián Reyes</b></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -24,9 +27,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#home">Inicio</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#sobre-mi">Sobre mí</a>
                         </li>
@@ -47,7 +47,7 @@
     <main>
         <section class="home" id="home">
             <div class="container">
-                <div class="centrado">
+                <div class="centrado" id="datos">
                     <img src="img/foto-perfil.jpg" class="img-fluid img-principal" alt="foto_perfil">
                     <h1>Sebastián Reyes</h1>
                     <h2>Programador Frontend</h2>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </section>
-        <section class="sobre-mi" id="sobre-mi">
+        <section class="sobre-mi top-xm" id="sobre-mi">
             <div class="container">
                 <h2 class="text-center">Sobre mí</h2>
                 <div class="row">
@@ -84,20 +84,71 @@
                 </div>
             </div>
         </section>
-        <section class="conocimiento" id="conocimiento"></section>
-        <section class="proyectos" id="proyectos"></section>
-        <section class="contacto" id="contacto">
+        <section class="conocimiento top-xm" id="conocimiento">
+            <h2 class="text-center">Conocimiento</h2>
+        </section>
+        <section class="proyectos top-xm" id="proyectos">
+            <h2 class="text-center">Proyectos</h2>
+        </section>
+        <section class="contacto top-xm" id="contacto">
+            <h2 class="text-center">Contacto</h2>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6"></div>
+                    <div class="col-md-6 contacto-contenedor">
+                        <div class="contacto-msg">
+                            <h3>Quieres ponerte en contacto conmigo?</h3>
+                            <p class="text-muted">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+                                consectetur corporis doloribus dicta quae sit laboriosam pariatur tenetur ex ipsum
+                                unde
+                                cupiditate eaque eos explicabo praesentium ipsa animi, ipsam perferendis!
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sapiente ullam debitis
+                                optio recusandae dolore placeat at in ipsam cumque aliquam a quo pariatur, unde omnis
+                                possimus numquam! Ullam, quo.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="contacto-nombre" class="form-label">Nombres:</label>
+                                    <input type="text" name="" class="form-control" id="contacto-nombre"
+                                        placeholder="Nombre">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contacto-apellido" class="form-label">Apellidos:</label>
+                                    <input type="text" name="" class="form-control" id="contacto-apellido"
+                                        placeholder="Apellidos">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contacto-correo" class="form-label">Correo electrónico:</label>
+                                    <input type="email" name="" class="form-control" id="contacto-correo"
+                                        placeholder="Correo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contacto-mensaje" class="form-label">Mensaje:</label>
+                                    <textarea class="form-control" id="contacto-mensaje" rows="3"
+                                        placeholder="Escribe un mensaje"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <a class="btn bg-negro text-light w-100 p-2">Enviar mensaje <i
+                                            class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <div class="footer" id="footer"></div>
     </main>
+    <footer class="bg-negro">
+        <h1 class="text-light">Hola</h1>
+    </footer>
     <script src="js/scripts.js"></script>
-    <script src="js/Bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

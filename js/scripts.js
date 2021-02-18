@@ -1,3 +1,12 @@
+window.sr = ScrollReveal();
+
+sr.reveal('#datos', {
+    duration: 1200,
+    origin: 'top',
+    distance: '300px',
+    reset: true
+});
+
 const boton = document.getElementById('boton-principal');
 boton.addEventListener('click', function (e) {
     let x = e.clientX - e.target.offsetLeft;
@@ -20,3 +29,4 @@ window.onscroll = function () {
     let progressAltura = (window.pageYOffset / totalAltura) * 100;
     progressbar.style.height = progressAltura + '%';
 }
+

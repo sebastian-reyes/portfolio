@@ -1,7 +1,7 @@
 window.sr = ScrollReveal();
 
 sr.reveal('#datos', {
-    duration: 1200,
+    duration: 700,
     origin: 'top',
     distance: '300px',
     reset: true

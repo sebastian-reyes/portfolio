@@ -327,6 +327,12 @@ ul {
         width: 200px;
         border-radius: 100%;
     }
+    section{
+        min-height: auto;
+    }
+    .home{
+        padding-top: 50px;
+    }
 }
 
 @media (max-width: 767.98px) {

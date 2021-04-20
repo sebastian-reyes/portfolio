@@ -271,6 +271,10 @@ section {
     border-radius: 10px;
 }
 
+.span-proyectos{
+    font-size: 20px;
+}
+
 .contacto-contenedor {
     display: flex;
     flex-direction: row;

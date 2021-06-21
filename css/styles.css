@@ -322,6 +322,9 @@ ul {
 .footer a {
     color: #ffffff;
 }
+.nombre_footer{
+    font-size: 20px;
+}
 
 @media (max-width: 575.98px) {
     h1 {

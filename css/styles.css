@@ -104,7 +104,7 @@ section {
     align-items: center;
     background-image: url('../img/fondo.webp');
     color: #ffffff;
-    background: linear-gradient( to right, hsla(0, 0%, 0%, 0.801), hsla(0, 0%, 15%, 0.808)), url('../img/fondo.jpg');
+    background: linear-gradient( to right, hsla(0, 0%, 0%, 0.801), hsla(0, 0%, 15%, 0.808)), url('../img/fondo.webp');
     background-position: center;
     background-size: cover;
 }

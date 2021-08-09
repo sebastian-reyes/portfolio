@@ -102,7 +102,7 @@ section {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background-image: url('../img/fondo.jpg');
+    background-image: url('../img/fondo.webp');
     color: #ffffff;
     background: linear-gradient( to right, hsla(0, 0%, 0%, 0.801), hsla(0, 0%, 15%, 0.808)), url('../img/fondo.jpg');
     background-position: center;

@@ -64,6 +64,20 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.nav-link{
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+.nav-link:hover, .nav-link:focus{
+    font-weight: 900;
+    background-size: 100% 2px;
+}
+
 .bg-negro {
     background: #000000;
 }

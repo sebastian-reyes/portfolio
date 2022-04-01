@@ -207,6 +207,10 @@ section {
     height: 150px;
 }
 
+.imagen-idat{
+    width: 370px;
+}
+
 .contenedor-grafico .porcentaje circle {
     width: 150px;
     height: 150px;

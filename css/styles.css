@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@600&family=Quicksand:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 .divider {
     border-bottom: 2px solid #f5f5f5;
 }
@@ -60,10 +63,6 @@
     filter: blur(30px);
 }
 
-.navbar {
-    font-family: 'Poppins', sans-serif;
-}
-
 .nav-link{
     text-decoration: none;
     background-image: linear-gradient(currentColor, currentColor);
@@ -104,7 +103,6 @@ p {
 }
 
 section {
-    font-family: 'Quicksand', sans-serif;
     min-height: 700px;
 }
 

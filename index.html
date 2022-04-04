@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icono.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -51,7 +52,6 @@
         <section class="home" id="home">
             <div class="container">
                 <div class="centrado" id="datos">
-                    <img src="img/foto-perfil.jpg" class="img-fluid img-principal" alt="foto_perfil">
                     <h1>Sebastián Reyes</h1>
                     <h2>Programador Fullstack</h2>
                     <p>Java | ReactJS | Git | Android Studio | Spring</p>
@@ -398,33 +398,35 @@
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="contacto-nombre" class="form-label">Nombres:</label>
-                                    <input type="text" name="" class="form-control" id="contacto-nombre"
-                                        placeholder="Nombres">
+                            <form action="https://formsubmit.co/sebastianreyes2105@gmail.com" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="contacto-nombre" class="form-label">Nombres:</label>
+                                        <input type="text" name="nombres" class="form-control" id="contacto-nombre"
+                                            placeholder="Nombres">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="contacto-apellido" class="form-label">Apellidos:</label>
+                                        <input type="text" name="apellidos" class="form-control" id="contacto-apellido"
+                                            placeholder="Apellidos">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contacto-correo" class="form-label">Correo electrónico:</label>
+                                        <input type="email" name="email" class="form-control" id="contacto-correo"
+                                            placeholder="usuario@ejemplo.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contacto-mensaje" class="form-label">Mensaje:</label>
+                                        <textarea class="form-control" name="mensaje" id="contacto-mensaje" rows="3"
+                                            placeholder="Escribe un mensaje"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-envio bg-negro w-100 p-2">Enviar mensaje <i
+                                                class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="contacto-apellido" class="form-label">Apellidos:</label>
-                                    <input type="text" name="" class="form-control" id="contacto-apellido"
-                                        placeholder="Apellidos">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="contacto-correo" class="form-label">Correo electrónico:</label>
-                                    <input type="email" name="" class="form-control" id="contacto-correo"
-                                        placeholder="usuario@ejemplo.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="contacto-mensaje" class="form-label">Mensaje:</label>
-                                    <textarea class="form-control" id="contacto-mensaje" rows="3"
-                                        placeholder="Escribe un mensaje"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <button class="btn btn-envio bg-negro w-100 p-2">Enviar mensaje <i
-                                            class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

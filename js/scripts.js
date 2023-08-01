@@ -30,3 +30,25 @@ window.onscroll = function () {
     progressbar.style.height = progressAltura + '%';
 }
 
+
+const paneles = [
+    'proyectos-general', 
+    'proyectos-api', 
+    'proyectos-webapp',
+    'proyectos-extras',
+    'proyectos-landing-pages'
+];
+
+function mostrarPanel(panelId){
+    paneles.forEach(panel =>{
+        if(panel == panelId){
+            document.getElementById(panelId).style.display = 'block';
+            console.log('hola');
+            const panelesFiltrados = paneles.filter(p=> p!= panel)
+            for (let i = 0; i < panelesFiltrados.length; i++) {
+                const panelFiltrado = panelesFiltrados[i];
+                document.getElementById(panelFiltrado).style.display = 'none';
+            }
+        }
+    });
+}

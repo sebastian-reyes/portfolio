@@ -342,6 +342,11 @@ ul {
     font-size: 20px;
 }
 
+#proyectos-api, #proyectos-webapp, #proyectos-landing-pages, #proyectos-extras{
+    display: none;
+}
+
+
 @media (max-width: 575.98px) {
     h1 {
         font-size: 60px;

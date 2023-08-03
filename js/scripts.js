@@ -43,7 +43,6 @@ function mostrarPanel(panelId){
     paneles.forEach(panel =>{
         if(panel == panelId){
             document.getElementById(panelId).style.display = 'block';
-            console.log('hola');
             const panelesFiltrados = paneles.filter(p=> p!= panel)
             for (let i = 0; i < panelesFiltrados.length; i++) {
                 const panelFiltrado = panelesFiltrados[i];

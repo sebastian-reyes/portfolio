@@ -61,17 +61,7 @@ html.dark-mode {
     }
 }
 
-.progressbar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, #008aff, #00ffe7);
-    filter: blur(30px);
-}
-
+.progressbar::before,
 .progressbar::after {
     content: '';
     position: absolute;
@@ -102,7 +92,6 @@ html.dark-mode {
     background: #000000;
 }
 
-/* Botón de cambio de tema */
 .btn-theme-toggle {
     background: none;
     border: none;
@@ -122,15 +111,14 @@ html.dark-mode {
     transform: rotate(20deg);
 }
 
-/* Transiciones suaves en modo oscuro */
-html {
+html,
+body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1 {
@@ -235,14 +223,13 @@ section {
     padding-bottom: 90px;
 }
 
-.imagen-idat{
+.imagen-idat {
     width: 370px;
 }
 
 .proyectos {
     background: var(--bg-secondary);
-    padding-top: 65px;
-    padding-bottom: 65px;
+    padding: 65px 0;
     min-height: 700px;
 }
 
@@ -250,11 +237,11 @@ section {
     border-radius: 10px;
 }
 
-.proyecto-shadow{
+.proyecto-shadow {
     box-shadow: 6px 5px 5px rgb(163, 163, 163);
 }
 
-.span-proyectos{
+.span-proyectos {
     font-size: 20px;
 }
 
@@ -280,34 +267,42 @@ ul {
     margin-bottom: 0;
 }
 
-.fa {
-    font-size: 1.5em;
-}
-
-.footer {
+.flex-center {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.fa {
+    font-size: 1.5em;
+}
+
+.footer {
     font-family: 'Poppins', sans-serif;
     background: #000000;
     color: #ffffff;
     text-align: center;
     min-height: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer a {
     color: #ffffff;
 }
-.nombre_footer{
+
+.nombre_footer {
     font-size: 20px;
 }
 
-#proyectos-api, #proyectos-webapp, #proyectos-landing-pages, #proyectos-extras{
+#proyectos-api, #proyectos-webapp, #proyectos-landing-pages, #proyectos-extras {
     display: none;
 }
-
 
 @media (max-width: 575.98px) {
     h1 {
@@ -322,10 +317,10 @@ ul {
         width: 200px;
         border-radius: 100%;
     }
-    section{
+    section {
         min-height: auto;
     }
-    .home{
+    .home {
         padding-top: 50px;
     }
 }
@@ -345,17 +340,12 @@ ul {
     }
 }
 
-@media (max-width: 991.98px) {}
-
 @media (max-width: 1199.98px) {
     .proyectos {
         min-height: 0;
     }
 }
 
-@media (max-width: 1399.98px) {}
-
-/* Estilos para la sección de Experiencia */
 .card-experiencia {
     background: var(--card-bg);
     border-left: 5px solid #0162c8;
@@ -443,7 +433,6 @@ ul {
     font-size: 1.2rem;
 }
 
-/* Responsive para experiencia */
 @media (max-width: 991.98px) {
     .card-experiencia {
         padding: 25px;
@@ -451,10 +440,6 @@ ul {
     
     .experiencia-header {
         flex-direction: column;
-    }
-    
-    .card-experiencia:nth-child(3) {
-        grid-column: auto;
     }
 }
 
@@ -470,7 +455,6 @@ ul {
     }
 }
 
-/* Dark Mode Styles */
 html.dark-mode .navbar {
     background-color: var(--bg-secondary) !important;
     border-bottom: 1px solid var(--border-color);

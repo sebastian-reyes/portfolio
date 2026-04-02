@@ -298,3 +298,118 @@ ul {
 }
 
 @media (max-width: 1399.98px) {}
+
+/* Estilos para la sección de Experiencia */
+.card-experiencia {
+    background: #ffffff;
+    border-left: 5px solid #0162c8;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-experiencia:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(1, 98, 200, 0.2);
+}
+
+.experiencia-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.experiencia-header h4 {
+    margin: 0;
+    color: #000000;
+    font-size: 1.3rem;
+}
+
+.badge-empresa {
+    background: linear-gradient(90deg, #0162c8, #55e7fc);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.cargo {
+    color: #0162c8;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.fecha {
+    color: #666666;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.fecha i {
+    font-size: 1rem;
+    color: #0162c8;
+}
+
+.lista-experiencia {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.lista-experiencia li {
+    color: #333333;
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.lista-experiencia li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #0162c8;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Responsive para experiencia */
+@media (max-width: 991.98px) {
+    .card-experiencia {
+        padding: 25px;
+    }
+    
+    .experiencia-header {
+        flex-direction: column;
+    }
+    
+    .card-experiencia:nth-child(3) {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .card-experiencia {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .lista-experiencia li {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+}

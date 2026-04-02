@@ -1,11 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --text-light: #666666;
+    --border-color: #f5f5f5;
+    --card-bg: #ffffff;
+}
+
+html.dark-mode {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-light: #b0b0b0;
+    --border-color: #404040;
+    --card-bg: #242424;
+}
+
 * {
     font-family: 'Poppins', sans-serif;
 }
 
 .divider {
-    border-bottom: 2px solid #f5f5f5;
+    border-bottom: 2px solid var(--border-color);
 }
 
 ::-webkit-scrollbar {
@@ -80,6 +100,37 @@
 
 .bg-negro {
     background: #000000;
+}
+
+/* Botón de cambio de tema */
+.btn-theme-toggle {
+    background: none;
+    border: none;
+    color: #495057;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-theme-toggle:hover {
+    background: rgba(73, 80, 87, 0.1);
+    transform: rotate(20deg);
+}
+
+/* Transiciones suaves en modo oscuro */
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1 {
@@ -175,7 +226,12 @@ section {
 }
 
 .sobre-mi {
-    background: #f5f5f5;
+    background: var(--bg-primary);
+    padding-bottom: 90px;
+}
+
+.experiencia {
+    background: var(--bg-secondary);
     padding-bottom: 90px;
 }
 
@@ -184,7 +240,7 @@ section {
 }
 
 .proyectos {
-    background: #f5f5f5;
+    background: var(--bg-secondary);
     padding-top: 65px;
     padding-bottom: 65px;
     min-height: 700px;
@@ -301,7 +357,7 @@ ul {
 
 /* Estilos para la sección de Experiencia */
 .card-experiencia {
-    background: #ffffff;
+    background: var(--card-bg);
     border-left: 5px solid #0162c8;
     border-radius: 8px;
     padding: 30px;
@@ -327,7 +383,7 @@ ul {
 
 .experiencia-header h4 {
     margin: 0;
-    color: #000000;
+    color: var(--text-primary);
     font-size: 1.3rem;
 }
 
@@ -349,7 +405,7 @@ ul {
 }
 
 .fecha {
-    color: #666666;
+    color: var(--text-light);
     font-size: 0.95rem;
     display: flex;
     align-items: center;
@@ -370,7 +426,7 @@ ul {
 }
 
 .lista-experiencia li {
-    color: #333333;
+    color: var(--text-secondary);
     margin-bottom: 12px;
     padding-left: 25px;
     position: relative;
@@ -412,4 +468,34 @@ ul {
         font-size: 0.9rem;
         margin-bottom: 10px;
     }
+}
+
+/* Dark Mode Styles */
+html.dark-mode .navbar {
+    background-color: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+html.dark-mode .navbar-brand {
+    color: var(--text-primary) !important;
+}
+
+html.dark-mode .nav-link {
+    color: var(--text-primary) !important;
+}
+
+html.dark-mode .btn-theme-toggle {
+    color: var(--text-primary);
+}
+
+html.dark-mode .btn-theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .proyecto-shadow {
+    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .span-proyectos {
+    color: var(--text-secondary);
 }

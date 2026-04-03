@@ -90,5 +90,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+    const ageElement = document.getElementById("age");
+    if (ageElement) {
+        ageElement.textContent = new Date().getFullYear() - 2002;
+    }
     initScrollReveal();
 });

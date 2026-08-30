@@ -2,12 +2,9 @@ const htmlElement = document.documentElement;
 
 function aplicarTema(oscuro) {
     htmlElement.classList.toggle('dark-mode', oscuro);
-    htmlElement.setAttribute('data-bs-theme', oscuro ? 'dark' : 'light');
 }
 
 function actualizarIconoTema(boton) {
-    // El sol y la luna los cruza el CSS segun html.dark-mode; aqui solo se
-    // mantiene al dia lo que anuncia un lector de pantalla.
     const oscuro = htmlElement.classList.contains('dark-mode');
     boton.setAttribute('aria-label', oscuro ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
     boton.setAttribute('aria-pressed', String(oscuro));
@@ -24,7 +21,7 @@ function iniciarTema() {
         actualizarIconoTema(boton);
         try {
             localStorage.setItem('theme', oscuro ? 'dark' : 'light');
-        } catch (e) { /* almacenamiento bloqueado: el cambio dura la sesion */ }
+        } catch (e) { }
     });
 }
 
@@ -33,11 +30,16 @@ function iniciarBarraProgreso() {
     if (!barra) return;
 
     let pendiente = false;
+    let total = 0;
+
     const pintar = () => {
         pendiente = false;
-        const total = document.documentElement.scrollHeight - window.innerHeight;
         const avance = total > 0 ? (window.scrollY / total) * 100 : 0;
         barra.style.height = Math.min(100, Math.max(0, avance)) + '%';
+    };
+    const medir = () => {
+        total = htmlElement.scrollHeight - window.innerHeight;
+        pintar();
     };
     const programar = () => {
         if (!pendiente) {
@@ -47,9 +49,12 @@ function iniciarBarraProgreso() {
     };
 
     window.addEventListener('scroll', programar, { passive: true });
-    window.addEventListener('resize', programar);
-    document.addEventListener('portfolio:layout', programar);
-    pintar();
+    window.addEventListener('resize', medir);
+    document.addEventListener('portfolio:layout', medir);
+    if ('ResizeObserver' in window) {
+        new ResizeObserver(medir).observe(document.body);
+    }
+    medir();
 }
 
 function iniciarEfectoBoton() {
@@ -94,6 +99,98 @@ function iniciarFiltroProyectos() {
     botones.forEach(boton => {
         boton.addEventListener('click', () => filtrar(boton.dataset.filtro));
     });
+}
+
+function iniciarCarruseles() {
+    const nodos = document.querySelectorAll('.carousel');
+    if (!nodos.length) return;
+
+    const carruseles = [];
+
+    const cebar = lamina => {
+        const imagen = lamina && lamina.querySelector('img[loading="lazy"]');
+        if (imagen) imagen.loading = 'eager';
+    };
+
+    nodos.forEach(raiz => {
+        const laminas = [...raiz.querySelectorAll('.carousel-item')];
+        if (laminas.length < 2) return;
+
+        const activa = laminas.findIndex(lamina => lamina.classList.contains('active'));
+        const carrusel = {
+            raiz,
+            laminas,
+            indice: activa < 0 ? 0 : activa,
+            visible: false,
+            detenido: false
+        };
+
+        carrusel.ir = destino => {
+            const nuevo = (destino + laminas.length) % laminas.length;
+            if (nuevo === carrusel.indice) return;
+            cebar(laminas[nuevo]);
+            raiz.classList.add('animado');
+            laminas[carrusel.indice].classList.remove('active');
+            laminas[nuevo].classList.add('active');
+            carrusel.indice = nuevo;
+            cebar(laminas[(nuevo + 1) % laminas.length]);
+        };
+
+        raiz.querySelectorAll('[data-slide]').forEach(boton => {
+            boton.addEventListener('click', () => {
+                carrusel.ir(carrusel.indice + (boton.dataset.slide === 'prev' ? -1 : 1));
+            });
+        });
+
+        raiz.addEventListener('mouseenter', () => { carrusel.detenido = true; });
+        raiz.addEventListener('mouseleave', () => { carrusel.detenido = false; });
+        raiz.addEventListener('focusin', () => { carrusel.detenido = true; });
+        raiz.addEventListener('focusout', () => { carrusel.detenido = false; });
+
+        carruseles.push(carrusel);
+    });
+
+    if (!carruseles.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let temporizador = null;
+
+    const avanzar = () => {
+        carruseles.forEach(carrusel => {
+            if (carrusel.visible && !carrusel.detenido) carrusel.ir(carrusel.indice + 1);
+        });
+    };
+
+    const revisar = () => {
+        const activo = !document.hidden && carruseles.some(carrusel => carrusel.visible);
+        if (activo && temporizador === null) {
+            temporizador = window.setInterval(avanzar, 5000);
+        } else if (!activo && temporizador !== null) {
+            window.clearInterval(temporizador);
+            temporizador = null;
+        }
+    };
+
+    if ('IntersectionObserver' in window) {
+        const porRaiz = new Map(carruseles.map(carrusel => [carrusel.raiz, carrusel]));
+        const observador = new IntersectionObserver(entradas => {
+            entradas.forEach(entrada => {
+                const carrusel = porRaiz.get(entrada.target);
+                if (!carrusel) return;
+                carrusel.visible = entrada.isIntersecting;
+                if (entrada.isIntersecting) {
+                    cebar(carrusel.laminas[(carrusel.indice + 1) % carrusel.laminas.length]);
+                }
+            });
+            revisar();
+        }, { threshold: 0.25 });
+        carruseles.forEach(carrusel => observador.observe(carrusel.raiz));
+    } else {
+        carruseles.forEach(carrusel => { carrusel.visible = true; });
+    }
+
+    document.addEventListener('visibilitychange', revisar);
+    revisar();
 }
 
 function iniciarValidacionFormulario() {
@@ -141,7 +238,7 @@ function iniciarReveal() {
         return;
     }
 
-    document.documentElement.classList.add('js-reveal');
+    htmlElement.classList.add('js-reveal');
 
     const observador = new IntersectionObserver((entradas, obs) => {
         entradas.forEach(entrada => {
@@ -151,7 +248,7 @@ function iniciarReveal() {
         });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
 
-    elementos.forEach((el, i) => {
+    elementos.forEach(el => {
         const hermanos = el.parentElement ? [...el.parentElement.children].filter(n => n.classList.contains('reveal')) : [];
         const posicion = Math.max(0, hermanos.indexOf(el));
         el.style.transitionDelay = Math.min(posicion, 5) * 90 + 'ms';
@@ -197,25 +294,31 @@ function iniciarNavbar() {
     if (!navbar) return;
 
     const menu = document.getElementById('menu-principal');
+    const boton = navbar.querySelector('.navbar-toggler');
     let abierto = false;
 
     const actualizar = () => {
         navbar.classList.toggle('desplazado', abierto || window.scrollY > 40);
     };
 
-    window.addEventListener('scroll', actualizar, { passive: true });
-    window.addEventListener('resize', actualizar);
+    const plegar = mostrar => {
+        abierto = mostrar;
+        if (menu) menu.classList.toggle('show', mostrar);
+        if (boton) boton.setAttribute('aria-expanded', String(mostrar));
+        actualizar();
+    };
 
-    if (menu) {
-        menu.addEventListener('show.bs.collapse', () => { abierto = true; actualizar(); });
-        menu.addEventListener('hidden.bs.collapse', () => { abierto = false; actualizar(); });
+    window.addEventListener('scroll', actualizar, { passive: true });
+    window.addEventListener('resize', () => {
+        if (abierto && window.innerWidth >= 992) plegar(false);
+        else actualizar();
+    });
+
+    if (menu && boton) {
+        boton.addEventListener('click', () => plegar(!abierto));
         menu.querySelectorAll('.nav-link').forEach(enlace => {
             enlace.addEventListener('click', () => {
-                if (!menu.classList.contains('show')) return;
-                const plegable = window.bootstrap && window.bootstrap.Collapse
-                    ? window.bootstrap.Collapse.getOrCreateInstance(menu)
-                    : null;
-                if (plegable) plegable.hide();
+                if (abierto) plegar(false);
             });
         });
     }
@@ -228,6 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
     iniciarBarraProgreso();
     iniciarEfectoBoton();
     iniciarFiltroProyectos();
+    iniciarCarruseles();
     iniciarValidacionFormulario();
     iniciarDatosDinamicos();
     iniciarReveal();

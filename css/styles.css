@@ -1,36 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
 :root {
     --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f5;
-    --text-primary: #000000;
-    --text-secondary: #333333;
-    --text-light: #666666;
-    --border-color: #f5f5f5;
+    --bg-secondary: #f5f6f8;
+    /* negro puro sobre blanco puro cansa la vista: se rebaja un punto */
+    --text-primary: #14171c;
+    --text-secondary: #3d434d;
+    --text-light: #6b7280;
+    --border-color: #e4e7ec;
     --card-bg: #ffffff;
+
+    --acento: #0162c8;
+    --acento-claro: #55e7fc;
+
+    --sombra: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --sombra-fuerte: 0 12px 30px rgba(1, 98, 200, 0.18);
+
+    --footer-bg: #14171c;
+    --nav-bg: rgba(255, 255, 255, 0.82);
+    --nav-borde: rgba(0, 0, 0, 0.08);
+
+    /* Escala de espaciado: antes habia 70px, 90px, 65px y 700px sueltos.
+       Con una escala las secciones respiran igual entre si. */
+    --espacio-xs: 0.5rem;
+    --espacio-s: 1rem;
+    --espacio-m: 2rem;
+    --espacio-l: 4rem;
+    --espacio-xl: 6.5rem;
+
+    /* Ancho de lectura comodo: ~65 caracteres */
+    --medida: 65ch;
 }
 
 html.dark-mode {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --text-primary: #ffffff;
-    --text-secondary: #e0e0e0;
-    --text-light: #b0b0b0;
-    --border-color: #404040;
-    --card-bg: #242424;
+    /* Grises con un punto de azul: el gris neutro puro se ve sucio en pantalla.
+       El texto no es blanco puro para evitar el halo sobre fondo oscuro. */
+    --bg-primary: #0f1115;
+    --bg-secondary: #151920;
+    --text-primary: #e8eaed;
+    --text-secondary: #b7bdc7;
+    --text-light: #8891a0;
+    --border-color: #272d38;
+    --card-bg: #181d25;
+
+    /* el azul de marca no llega a contraste suficiente sobre fondo oscuro */
+    --acento: #4d9fff;
+    --acento-claro: #7ee3f5;
+
+    /* en oscuro una sombra negra no se ve: el relieve lo da el borde */
+    --sombra: 0 4px 20px rgba(0, 0, 0, 0.45);
+    --sombra-fuerte: 0 14px 34px rgba(0, 0, 0, 0.6);
+
+    --footer-bg: #0a0c10;
+    --nav-bg: rgba(15, 17, 21, 0.82);
+    --nav-borde: rgba(255, 255, 255, 0.09);
 }
 
 * {
     font-family: 'Poppins', sans-serif;
 }
 
-.divider {
-    border-bottom: 2px solid var(--border-color);
-}
-
-::-webkit-scrollbar {
-    width: 1px;
-    background: #000000;
+/* La fuente se cargaba solo en peso 300, asi que ese era el aspecto original
+   del texto corrido. Con el 400 ya disponible hay que pedirlo explicitamente
+   o todo se ve mas grueso de lo que era. */
+body {
+    font-weight: 300;
 }
 
 .scrollPath {
@@ -49,16 +81,6 @@ html.dark-mode {
     right: 0;
     width: 5px;
     background: linear-gradient(to top, #008aff, #00ffe7);
-    animation: progresbar 5s linear infinite;
-}
-
-@keyframes progresbar {
-    0%, 100% {
-        filter: hue-rotate(0deg);
-    }
-    50% {
-        filter: hue-rotate(360deg);
-    }
 }
 
 .progressbar::before,
@@ -88,27 +110,76 @@ html.dark-mode {
     cursor: pointer;
 }
 
-.bg-negro {
-    background: #000000;
+.btn-envio {
+    background: var(--acento);
+    border: 1px solid var(--acento);
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.25s ease, color 0.25s ease;
 }
 
 .btn-theme-toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
     background: none;
     border: none;
-    color: #495057;
-    font-size: 1.3rem;
+    color: inherit;
     cursor: pointer;
-    padding: 8px 12px;
     border-radius: 50%;
-    transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-theme-toggle:hover {
-    background: rgba(73, 80, 87, 0.1);
-    transform: rotate(20deg);
+    background: color-mix(in srgb, currentColor 14%, transparent);
+}
+
+/* Sol y luna se cruzan girando: solo uno es visible segun el tema. */
+.icono-tema {
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icono-luna {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.icono-sol {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.55);
+}
+
+html.dark-mode .icono-luna {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.55);
+}
+
+html.dark-mode .icono-sol {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+html {
+    scroll-behavior: smooth;
+    /* compensa el navbar fijo al saltar a una seccion con #ancla */
+    scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 html,
@@ -142,10 +213,6 @@ p {
     margin-bottom: 0;
 }
 
-section {
-    min-height: 700px;
-}
-
 .home {
     width: 100%;
     height: 100vh;
@@ -165,12 +232,6 @@ section {
     text-align: center;
 }
 
-.img-principal {
-    width: 250px;
-    border-radius: 100%;
-    box-shadow: 10px 5px 5px black;
-}
-
 .boton-principal {
     font-weight: 500;
     position: relative;
@@ -180,7 +241,7 @@ section {
     text-decoration: none;
     border-radius: 40px;
     overflow: hidden;
-    background: linear-gradient(90deg, #0162c8, #55e7fc);
+    background: linear-gradient(90deg, var(--acento), var(--acento-claro));
 }
 
 .boton-principal:hover {
@@ -209,28 +270,11 @@ section {
     }
 }
 
-.top-xm {
-    padding-top: 70px;
-}
-
-.sobre-mi {
-    background: var(--bg-primary);
-    padding-bottom: 90px;
-}
-
-.experiencia {
-    background: var(--bg-secondary);
-    padding-bottom: 90px;
-}
-
-.imagen-idat {
-    width: 370px;
-}
-
-.proyectos {
-    background: var(--bg-secondary);
-    padding: 65px 0;
-    min-height: 700px;
+/* Los atributos width/height evitan saltos de layout, pero hay que dejar que
+   la altura se recalcule sola o la imagen se deforma al escalar el ancho. */
+.carousel-inner img,
+.proyecto-item img {
+    height: auto;
 }
 
 .proyecto-rounded {
@@ -238,11 +282,13 @@ section {
 }
 
 .proyecto-shadow {
-    box-shadow: 6px 5px 5px rgb(163, 163, 163);
+    box-shadow: var(--sombra);
+    border: 1px solid var(--border-color);
 }
 
 .span-proyectos {
-    font-size: 20px;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
 }
 
 .contacto-contenedor {
@@ -253,36 +299,26 @@ section {
     align-items: center;
 }
 
-.btn-envio {
-    color: #ffffff;
-}
-
-.btn-envio:hover {
-    background: #ffffff;
-    border-color: #000000;
-    color: #000000;
+.btn-envio:hover,
+.btn-envio:focus-visible {
+    background: transparent;
+    color: var(--acento);
 }
 
 ul {
     margin-bottom: 0;
 }
 
-.flex-center {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.fa {
+.fa-solid,
+.fa-regular,
+.fa-brands {
     font-size: 1.5em;
 }
 
 .footer {
     font-family: 'Poppins', sans-serif;
-    background: #000000;
-    color: #ffffff;
+    background: var(--footer-bg);
+    color: #f2f4f7;
     text-align: center;
     min-height: 200px;
     display: flex;
@@ -300,10 +336,6 @@ ul {
     font-size: 20px;
 }
 
-#proyectos-api, #proyectos-webapp, #proyectos-landing-pages, #proyectos-extras {
-    display: none;
-}
-
 @media (max-width: 575.98px) {
     h1 {
         font-size: 60px;
@@ -312,13 +344,6 @@ ul {
     h2 {
         font-size: 30px;
         line-height: normal;
-    }
-    .img-principal {
-        width: 200px;
-        border-radius: 100%;
-    }
-    section {
-        min-height: auto;
     }
     .home {
         padding-top: 50px;
@@ -334,64 +359,16 @@ ul {
         font-size: 30px;
         line-height: normal;
     }
-    .img-principal {
-        width: 150px;
-        border-radius: 100%;
-    }
-}
-
-@media (max-width: 1199.98px) {
-    .proyectos {
-        min-height: 0;
-    }
-}
-
-.card-experiencia {
-    background: var(--card-bg);
-    border-left: 5px solid #0162c8;
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-experiencia:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(1, 98, 200, 0.2);
-}
-
-.experiencia-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 15px;
-    gap: 15px;
-}
-
-.experiencia-header h4 {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 1.3rem;
 }
 
 .badge-empresa {
-    background: linear-gradient(90deg, #0162c8, #55e7fc);
+    background: linear-gradient(90deg, var(--acento), var(--acento-claro));
     color: #ffffff;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
     white-space: nowrap;
-}
-
-.cargo {
-    color: #0162c8;
-    font-weight: 600;
-    font-size: 1.05rem;
-    margin-bottom: 8px;
 }
 
 .fecha {
@@ -405,7 +382,7 @@ ul {
 
 .fecha i {
     font-size: 1rem;
-    color: #0162c8;
+    color: var(--acento);
 }
 
 .lista-experiencia {
@@ -428,26 +405,12 @@ ul {
     content: "▸";
     position: absolute;
     left: 0;
-    color: #0162c8;
+    color: var(--acento);
     font-weight: bold;
     font-size: 1.2rem;
 }
 
-@media (max-width: 991.98px) {
-    .card-experiencia {
-        padding: 25px;
-    }
-    
-    .experiencia-header {
-        flex-direction: column;
-    }
-}
-
 @media (max-width: 767.98px) {
-    .card-experiencia {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
     
     .lista-experiencia li {
         font-size: 0.9rem;
@@ -455,31 +418,709 @@ ul {
     }
 }
 
-html.dark-mode .navbar {
-    background-color: var(--bg-secondary) !important;
-    border-bottom: 1px solid var(--border-color);
+/* ============================ hero ============================ */
+.hero-stack {
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    color: var(--acento-claro);
+    font-weight: 600;
 }
 
-html.dark-mode .navbar-brand {
-    color: var(--text-primary) !important;
+.hero-resumen {
+    margin-top: 12px;
+    color: #d6d6d6;
+    max-width: 620px;
+    margin-inline: auto;
 }
 
-html.dark-mode .nav-link {
-    color: var(--text-primary) !important;
+.hero-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
 }
 
-html.dark-mode .btn-theme-toggle {
+.boton-secundario {
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 40px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.boton-secundario:hover,
+.boton-secundario:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.boton-secundario i {
+    font-size: 1rem;
+}
+
+/* ==================== filtros de proyectos ==================== */
+.filtros-proyectos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.filtro-proyecto {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.filtro-proyecto:hover {
+    border-color: var(--acento);
+    color: var(--acento);
+}
+
+.filtro-proyecto.activo {
+    background: linear-gradient(90deg, var(--acento), var(--acento-claro));
+    border-color: transparent;
+    color: #ffffff;
+}
+
+.sin-resultados {
+    color: var(--text-light);
+}
+
+/* ================== tarjeta de proyecto ================== */
+.proyecto-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.proyecto-item[hidden] {
+    display: none;
+}
+
+.lista-tecnologias {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.tech-chip {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.enlace-proyecto {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 12px;
+    color: var(--acento);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.enlace-proyecto:hover,
+.enlace-proyecto:focus-visible {
+    text-decoration: underline;
+}
+
+.enlace-proyecto i {
+    font-size: 1.1rem;
+}
+
+/* los controles del carrusel necesitan contraste sobre capturas claras */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 12%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
+    padding: 14px;
+    background-size: 45%;
+}
+
+/* ==================== formulario ==================== */
+/* trampa antispam: fuera de la vista pero accesible para los bots */
+.campo-trampa {
+    position: absolute;
+    left: -5000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+/* ==================== foco visible ==================== */
+a:focus-visible,
+button:focus-visible,
+.filtro-proyecto:focus-visible {
+    outline: 3px solid var(--acento-claro);
+    outline-offset: 3px;
+}
+
+@media (max-width: 767.98px) {
+    .hero-stack {
+        font-size: 0.95rem;
+    }
+    .hero-acciones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filtro-proyecto {
+        padding: 7px 16px;
+        font-size: 0.88rem;
+    }
+}
+
+/* ============ entrada del hero ============ */
+/* Sustituye a ScrollReveal: el bloque solo se animaba a si mismo al cargar,
+   no hacia falta una libreria entera (y si fallaba, el titulo quedaba en
+   opacity:0). El bloque prefers-reduced-motion de arriba lo desactiva. */
+@keyframes aparecer-hero {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+#datos {
+    animation: aparecer-hero 0.7s ease-out both;
+}
+
+/* Los logos de estudios son negros sobre fondo transparente: en tema oscuro
+   se perdian contra el fondo. */
+
+/* ================== ritmo y estructura de seccion ================== */
+.seccion {
+    padding-block: var(--espacio-xl);
+}
+
+.sobre-mi,
+.conocimiento {
+    background: var(--bg-primary);
+}
+
+.experiencia,
+.proyectos {
+    background: var(--bg-secondary);
+}
+
+.seccion-cabecera {
+    text-align: center;
+    margin-bottom: var(--espacio-l);
+}
+
+.seccion-numero {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: var(--acento);
+    margin-bottom: var(--espacio-xs);
+}
+
+.seccion-cabecera h2 {
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+/* linea de acento que se dibuja cuando la cabecera entra en pantalla */
+.seccion-cabecera h2::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    margin: var(--espacio-s) auto 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--acento), var(--acento-claro));
+    transition: width 0.7s ease 0.15s;
+}
+
+.seccion-cabecera.visible h2::after {
+    width: 80px;
+}
+
+/* ================== texto legible ==================
+   Antes todo el texto corrido iba centrado: con ambos margenes irregulares
+   cuesta encontrar el inicio de cada linea. */
+.bloque-texto {
+    max-width: var(--medida);
+    margin-inline: auto;
+}
+
+.bloque-texto p + p,
+.bloque-columnas p + p {
+    margin-top: var(--espacio-s);
+}
+
+.bloque-columnas {
+    margin-top: var(--espacio-l);
+    row-gap: var(--espacio-l);
+}
+
+.bloque-columnas h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--espacio-s);
+}
+
+.bloque-columnas p {
+    max-width: 60ch;
+    color: var(--text-secondary);
+}
+
+.logos-estudios {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 4vw, 2.75rem);
+    flex-wrap: wrap;
+    margin-top: var(--espacio-m);
+}
+
+/* Se dimensionan por ALTURA, no por ancho: IDAT es casi cuadrado (1.14) y UTP
+   muy apaisado (3.29), asi que un ancho comun los deja con pesos visuales muy
+   distintos. clamp() los escala de forma continua en vez de saltar por
+   breakpoints, y cada uno lleva su propia altura para que se vean equilibrados. */
+.logos-estudios img {
+    width: auto;
+    max-width: 100%;
+}
+
+.logo-idat {
+    height: clamp(74px, 11vw, 104px);
+}
+
+.logo-utp {
+    height: clamp(46px, 7vw, 66px);
+}
+
+/* Cada logo tiene version para claro y para oscuro; solo una se muestra. */
+.logo-oscuro {
+    display: none;
+}
+
+html.dark-mode .logo-claro {
+    display: none;
+}
+
+html.dark-mode .logo-oscuro {
+    display: block;
+}
+
+.enlace-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: var(--espacio-m);
+    color: #ffffff;
+}
+
+.enlace-cv i {
+    font-size: 1rem;
+}
+
+/* ================== linea de tiempo ==================
+   3 puestos en una rejilla de 2 columnas dejaban un hueco, y una carrera es
+   una secuencia, no una cuadricula. */
+.linea-tiempo {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 820px;
+    position: relative;
+}
+
+.linea-tiempo::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--acento), var(--acento-claro), transparent);
+}
+
+.hito {
+    position: relative;
+    padding-left: calc(var(--espacio-m) + var(--espacio-s));
+    padding-bottom: var(--espacio-l);
+}
+
+.hito:last-child {
+    padding-bottom: 0;
+}
+
+.hito-marca {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 3px solid var(--acento);
+}
+
+.hito-marca.actual {
+    background: var(--acento);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--acento) 22%, transparent);
+}
+
+.hito-contenido {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: var(--espacio-m);
+    box-shadow: var(--sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hito-contenido:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.hito-contenido h3 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+}
+
+.hito .empresa {
+    color: var(--acento);
+    font-weight: 600;
+    margin-bottom: var(--espacio-s);
+}
+
+.hito .fecha {
+    margin-bottom: var(--espacio-xs);
+}
+
+.hito .badge-empresa {
+    display: inline-block;
+    margin-bottom: var(--espacio-s);
+}
+
+/* ================== conocimiento agrupado ================== */
+.grupos-conocimiento {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--espacio-m);
+    margin-top: var(--espacio-l);
+}
+
+.grupo-conocimiento {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--espacio-m);
+}
+
+.grupo-conocimiento h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-light);
+    margin-bottom: var(--espacio-s);
+}
+
+.lista-tecnologias {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lista-tecnologias li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.lista-tecnologias img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* ================== tarjeta de proyecto ================== */
+.proyecto-titulo {
+    font-size: 1.2rem;
+    margin-bottom: var(--espacio-s);
+}
+
+.lista-tecnologias-proyecto {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: var(--espacio-s);
+}
+
+.proyecto-item .enlace-proyecto {
+    justify-content: flex-start;
+}
+
+/* el marco recorta el zoom de la captura al pasar el raton */
+.proyecto-item .carousel {
+    overflow: hidden;
+}
+
+.proyecto-item .carousel-item img {
+    transition: transform 0.45s ease;
+}
+
+.proyecto-item:hover .carousel-item img {
+    transform: scale(1.04);
+}
+
+.proyecto-item .carousel {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.proyecto-item:hover .carousel {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-fuerte);
+}
+
+/* ================== reveal al hacer scroll ==================
+   Lo aplica un IntersectionObserver en scripts.js. La clase solo se anade si
+   hay JS y no se pidio menos movimiento, asi que sin JS el contenido se ve. */
+.js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js-reveal .reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ================== nav: seccion activa ================== */
+.nav-link.activo {
+    font-weight: 600;
+    background-size: 100% 2px;
+}
+
+/* ================== barra de progreso ================== */
+.progressbar {
+    width: 3px;
+}
+
+.scrollPath {
+    width: 3px;
+}
+
+@media (max-width: 991.98px) {
+    :root {
+        --espacio-xl: 4rem;
+        --espacio-l: 2.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    /* la linea de tiempo necesita ceder margen: con 48px de sangria mas
+       32px de padding quedaban ~250px utiles para el texto */
+    .hito {
+        padding-left: var(--espacio-m);
+        padding-bottom: var(--espacio-m);
+    }
+
+    .hito-contenido {
+        padding: var(--espacio-s) var(--espacio-s) var(--espacio-m);
+    }
+
+    .linea-tiempo::before {
+        left: 6px;
+    }
+
+    .hito-marca {
+        width: 14px;
+        height: 14px;
+    }
+
+    .grupo-conocimiento {
+        padding: var(--espacio-s);
+    }
+
+    .logos-estudios {
+        gap: var(--espacio-s);
+    }
+}
+
+/* ============================ navbar ============================
+   Sobre el hero va transparente con texto claro; al bajar se vuelve solido
+   con desenfoque. La clase .desplazado la pone scripts.js (tambien cuando se
+   abre el menu en movil, o el desplegable quedaria sin fondo). */
+.navbar {
+    background: transparent;
+    padding-block: var(--espacio-s);
+    transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+.navbar,
+.navbar .nav-link,
+.navbar .navbar-brand,
+.navbar .btn-theme-toggle {
+    color: #ffffff;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+}
+
+.navbar-acciones {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-xs);
+}
+
+@media (min-width: 992px) {
+    /* En escritorio las acciones van al extremo derecho, despues de los
+       enlaces. En movil NO deben llevar order: el menu desplegable ocupa una
+       fila propia y las empujaria por debajo de los enlaces. */
+    .navbar-acciones {
+        order: 3;
+    }
+}
+
+.navbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.4);
+    padding: 6px 10px;
+}
+
+.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar.desplazado {
+    background: var(--nav-bg);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    box-shadow: 0 1px 0 var(--nav-borde), 0 6px 24px rgba(0, 0, 0, 0.08);
+    padding-block: 0.45rem;
+}
+
+.navbar.desplazado,
+.navbar.desplazado .nav-link,
+.navbar.desplazado .navbar-brand,
+.navbar.desplazado .btn-theme-toggle {
     color: var(--text-primary);
 }
 
-html.dark-mode .btn-theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
+.navbar.desplazado .navbar-toggler {
+    border-color: var(--border-color);
 }
 
-html.dark-mode .proyecto-shadow {
-    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.3);
+.navbar.desplazado .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28110,118,130,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-html.dark-mode .span-proyectos {
+.navbar .nav-link {
+    padding-inline: 0.9rem;
+}
+
+.navbar .nav-link.activo {
+    color: var(--acento-claro);
+}
+
+.navbar.desplazado .nav-link.activo {
+    color: var(--acento);
+}
+
+@media (max-width: 991.98px) {
+    /* el menu desplegado necesita fondo propio: sobre el hero seria ilegible */
+    .navbar .navbar-collapse {
+        margin-top: var(--espacio-s);
+        padding: var(--espacio-xs) 0;
+        border-top: 1px solid var(--nav-borde);
+    }
+
+    .navbar .nav-link {
+        padding-block: 0.6rem;
+    }
+}
+
+/* ============================ contacto ============================ */
+.contacto-msg h3 {
+    font-size: 1.4rem;
+    margin-bottom: var(--espacio-s);
+}
+
+.contacto-msg p {
     color: var(--text-secondary);
+    max-width: 46ch;
+}
+
+.contacto-msg p + p {
+    margin-top: var(--espacio-s);
+}
+
+.contacto-contenedor {
+    /* dejaba de centrar en vertical solo para que el texto no quede colgado */
+    align-items: center;
+}
+
+.pie-legal {
+    /* .text-muted de Bootstrap queda casi ilegible sobre el pie oscuro */
+    color: rgba(242, 244, 247, 0.65);
+}
+
+/* nombre del proyecto dentro de cada puesto */
+.hito-proyecto {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: var(--espacio-s);
+}
+
+.hero-lugar {
+    display: block;
+    margin-top: var(--espacio-xs);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Logos monocromos oscuros (GitHub, Kafka, SQL Server): sobre fondo oscuro
+   desaparecen. Se les da una placa clara en lugar de invertirlos, porque
+   invertir falsearia el color de los que no son negro puro. */
+html.dark-mode .lista-tecnologias img.icono-fondo-claro {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 5px;
+    padding: 2px;
 }

@@ -1,0 +1,176 @@
+{
+  "lang": "en",
+  "ruta": "en/",
+  "patrones": [
+    {
+      "buscar": "Captura (\\d+) de (\\d+) del proyecto ",
+      "poner": "Screenshot $1 of $2 of the project ",
+      "minimo": 22
+    },
+    {
+      "buscar": ", se abre en una pestaña nueva\\)",
+      "poner": ", opens in a new tab)",
+      "minimo": 7
+    }
+  ],
+  "reemplazos": [
+    { "es": "<html lang=\"es\">", "en": "<html lang=\"en\">" },
+
+    { "es": "<title>Sebastián Reyes Quiroz | Backend Java Software Engineer</title>", "en": "<title>Sebastián Reyes Quiroz | Backend Java Software Engineer</title>" },
+
+    { "es": "content=\"Backend Java Software Engineer en el BCP (Lima, Perú). Más de 4 años construyendo microservicios reactivos y arquitecturas orientadas a eventos para banca con Java, Spring WebFlux, Quarkus, Kafka y Azure.\"", "en": "content=\"Backend Java Software Engineer at BCP (Lima, Peru). More than 4 years building reactive microservices and event-driven architectures for banking with Java, Spring WebFlux, Quarkus, Kafka and Azure.\"" },
+
+    { "es": "content=\"Microservicios reactivos y arquitecturas orientadas a eventos para banca con Java, Spring WebFlux, Quarkus, Kafka y Azure. Más de 4 años en BCP, NTT DATA y BBVA.\"", "en": "content=\"Reactive microservices and event-driven architectures for banking with Java, Spring WebFlux, Quarkus, Kafka and Azure. More than 4 years at BCP, NTT DATA and BBVA.\"" },
+
+    { "es": "content=\"Microservicios reactivos y arquitecturas orientadas a eventos para banca. Más de 4 años en BCP, NTT DATA y BBVA.\"", "en": "content=\"Reactive microservices and event-driven architectures for banking. More than 4 years at BCP, NTT DATA and BBVA.\"" },
+
+    { "es": "<link rel=\"canonical\" href=\"https://sebastian-reyes.github.io/portfolio/\">", "en": "<link rel=\"canonical\" href=\"https://sebastian-reyes.github.io/portfolio/en/\">" },
+
+    { "es": "<meta property=\"og:url\" content=\"https://sebastian-reyes.github.io/portfolio/\">", "en": "<meta property=\"og:url\" content=\"https://sebastian-reyes.github.io/portfolio/en/\">" },
+
+    { "es": "<meta property=\"og:locale\" content=\"es_PE\">", "en": "<meta property=\"og:locale\" content=\"en\">\n    <meta property=\"og:locale:alternate\" content=\"es_PE\">" },
+
+    { "es": "\"description\": \"Backend Java Software Engineer con más de 4 años construyendo microservicios reactivos y arquitecturas orientadas a eventos para el sector bancario.\"", "en": "\"description\": \"Backend Java Software Engineer with more than 4 years building reactive microservices and event-driven architectures for the banking sector.\"" },
+
+    { "es": "<a class=\"selector-idioma\" href=\"en/\" hreflang=\"en\" aria-label=\"Ver esta página en inglés\"> <span lang=\"en\">EN</span> </a>", "en": "<a class=\"selector-idioma\" href=\"../\" hreflang=\"es\" aria-label=\"View this page in Spanish\">\n                        <span lang=\"es\">ES</span>\n                    </a>" },
+
+    { "es": "aria-label=\"Navegación principal\"", "en": "aria-label=\"Main navigation\"" },
+    { "es": "title=\"Cambiar tema\"", "en": "title=\"Switch theme\"" },
+    { "es": "aria-label=\"Cambiar a tema oscuro\"", "en": "aria-label=\"Switch to dark theme\"" },
+    { "es": "aria-label=\"Abrir el menú de navegación\"", "en": "aria-label=\"Open the navigation menu\"" },
+
+    { "es": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#sobre-mi\">Sobre mí</a></li>", "en": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#sobre-mi\">About me</a></li>" },
+    { "es": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#experiencia\">Experiencia</a></li>", "en": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#experiencia\">Experience</a></li>" },
+    { "es": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#conocimiento\">Conocimiento</a></li>", "en": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#conocimiento\">Skills</a></li>" },
+    { "es": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#proyectos\">Proyectos</a></li>", "en": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#proyectos\">Projects</a></li>" },
+    { "es": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#contacto\">Contacto</a></li>", "en": "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#contacto\">Contact</a></li>" },
+
+    { "es": "Más de 4 años construyendo microservicios reactivos para banca en BCP y BBVA. <span class=\"hero-lugar\">Lima, Perú</span>", "en": "More than 4 years building reactive microservices for banking at BCP and BBVA.\n                        <span class=\"hero-lugar\">Lima, Peru</span>" },
+
+    { "es": "class=\"boton-principal\" id=\"boton-principal\">Mis proyectos</a>", "en": "class=\"boton-principal\" id=\"boton-principal\">My projects</a>" },
+    { "es": "Ver mi CV <svg class=\"icono\"", "en": "View my resume <svg class=\"icono\"" },
+
+    { "es": "<h2>Sobre mí</h2>", "en": "<h2>About me</h2>" },
+
+    { "es": "Soy <b>Backend Java Software Engineer</b> con más de 4 años diseñando y desarrollando microservicios para el sector bancario, desde <b>Lima, Perú</b>. Hoy trabajo en el <b>Banco de Crédito BCP</b> con <b>Java, Spring WebFlux, Quarkus y Kafka</b>; antes pasé por <b>NTT DATA</b> y por <b>BBVA</b>, diseñando y publicando APIs bancarias.", "en": "I'm a <b>Backend Java Software Engineer</b> with more than 4 years designing and\n                        building microservices for the banking sector, from <b>Lima, Peru</b>.\n                        I currently work at <b>Banco de Crédito BCP</b> with <b>Java, Spring WebFlux,\n                            Quarkus and Kafka</b>; before that I was at <b>NTT DATA</b> and <b>BBVA</b>,\n                        designing and shipping banking APIs." },
+
+    { "es": "Mi terreno es el backend: arquitectura de microservicios reactivos y asíncronos, contratos <b>Design First</b> con OpenAPI y AsyncAPI, mensajería con Kafka, testing con JUnit y Mockito, y despliegue continuo sobre <b>Azure</b> con Jenkins y GitHub Actions.", "en": "Backend is my home ground: reactive and asynchronous microservice architecture,\n                        <b>Design First</b> contracts with OpenAPI and AsyncAPI, messaging with Kafka,\n                        testing with JUnit and Mockito, and continuous deployment on <b>Azure</b> with\n                        Jenkins and GitHub Actions." },
+
+    { "es": "También me muevo con soltura en el frontend cuando el proyecto lo pide (<b>Angular, React</b>), lo que me permite entender la aplicación de punta a punta y diseñar APIs que de verdad le sirvan a quien las consume.", "en": "I also hold my own on the frontend when a project calls for it\n                        (<b>Angular, React</b>), which lets me understand the application end to end and\n                        design APIs that genuinely work for whoever consumes them." },
+
+    { "es": "<h3>¿Cómo conocí este mundo?</h3>", "en": "<h3>How I found this field</h3>" },
+
+    { "es": "Desde una temprana edad desarrollé un profundo gusto por la informática, gracias a la influencia de mis tíos, que son ingenieros de sistemas. Ellos me guiaron en este mundo donde el aprendizaje es constante.", "en": "I developed a deep interest in computing early on, thanks to the influence of my\n                            uncles, who are systems engineers. They guided me into this world where the\n                            learning never stops." },
+
+    { "es": "Con <span id=\"age\" data-nacimiento=\"2002-05-21\"></span> años me considero una persona responsable y autodidacta: disfruto aprendiendo y no dejo las cosas a medias. La empatía y la paciencia son rasgos que me caracterizan y que considero fundamentales en cualquier equipo.", "en": "At <span id=\"age\" data-nacimiento=\"2002-05-21\"></span> I consider myself a\n                            responsible and self-taught person: I enjoy learning and I don't leave things\n                            half done. Empathy and patience are traits that define me and that I consider\n                            essential in any team." },
+
+    { "es": "Actualmente busco nuevos desafíos que potencien mi desarrollo profesional y me empujen a seguir creciendo en esta industria.", "en": "I'm currently looking for new challenges that push my professional development and\n                            keep me growing in this industry." },
+
+    { "es": "<h3>Estudios</h3>", "en": "<h3>Education</h3>" },
+
+    { "es": "A los 16 años empecé la carrera de <b>Desarrollo de Sistemas de Información</b> en el instituto <b>IDAT</b>, donde tuve buenos profesores que me enseñaron desde lo básico hasta lo más complejo, dejando siempre claro que uno también debe aprender por su cuenta.", "en": "At 16 I started an <b>Information Systems Development</b> degree at\n                            <b>IDAT</b>, where I had good teachers who took me from the basics to the most\n                            complex topics, always making it clear that you also have to learn on your own." },
+
+    { "es": "Ahora estudio <b>Ingeniería de Software</b> en la <b>UTP</b>, dando lo mejor de mí para estar entre los alumnos destacados.", "en": "I'm now studying <b>Software Engineering</b> at <b>UTP</b>, giving my best to stay\n                            among the top students." },
+
+    { "es": "alt=\"Logo de IDAT\"", "en": "alt=\"IDAT logo\"", "veces": 2 },
+    { "es": "alt=\"Logo de la UTP\"", "en": "alt=\"UTP logo\"", "veces": 2 },
+
+    { "es": "Mira mi CV <svg class=\"icono\"", "en": "See my resume <svg class=\"icono\"" },
+
+    { "es": "<h2>Experiencia Profesional</h2>", "en": "<h2>Professional Experience</h2>" },
+
+    { "es": "12/2025 — actualidad", "en": "12/2025 — present" },
+    { "es": "09/2024 — 11/2025", "en": "09/2024 — 11/2025" },
+    { "es": "06/2022 — 08/2024", "en": "06/2022 — 08/2024" },
+
+    { "es": "<p class=\"hito-proyecto\">Proyecto: Running Créditos Empresariales</p>", "en": "<p class=\"hito-proyecto\">Project: Running Corporate Lending</p>" },
+    { "es": "<p class=\"hito-proyecto\">Proyecto: Descuento de Letras y Facturas</p>", "en": "<p class=\"hito-proyecto\">Project: Promissory Note and Invoice Discounting</p>" },
+
+    { "es": "<span class=\"badge-empresa\">Cliente: BCP</span>", "en": "<span class=\"badge-empresa\">Client: BCP</span>" },
+    { "es": "<span class=\"badge-empresa\">Cliente: BBVA</span>", "en": "<span class=\"badge-empresa\">Client: BBVA</span>" },
+
+    { "es": "<li>Desarrollo de microservicios reactivos con <b>RxJava, Spring WebFlux y Quarkus</b> (Java 11, 17 y 21)</li>", "en": "<li>Reactive microservice development with <b>RxJava, Spring WebFlux and Quarkus</b> (Java 11, 17 and 21)</li>" },
+    { "es": "<li>Arquitecturas orientadas a eventos con <b>Apache Kafka</b> y esquemas <b>Avro</b>; migración de tópicos y productores/consumidores de Confluent Platform a <b>Confluent Cloud</b></li>", "en": "<li>Event-driven architectures with <b>Apache Kafka</b> and <b>Avro</b> schemas; migration of topics and producers/consumers from Confluent Platform to <b>Confluent Cloud</b></li>" },
+    { "es": "<li>Diseño de contratos de integración <b>Contract First</b> con <b>OpenAPI y AsyncAPI</b></li>", "en": "<li>Integration contract design, <b>Contract First</b>, with <b>OpenAPI and AsyncAPI</b></li>" },
+    { "es": "<li>Migración de microservicios de <b>Spring Boot a Quarkus</b> sobre el framework corporativo del banco</li>", "en": "<li>Microservice migration from <b>Spring Boot to Quarkus</b> on the bank's corporate framework</li>" },
+    { "es": "<li>Conectores <b>Salesforce Source y Sink</b> e integración con <b>HashiCorp Vault</b> para la gestión de secretos</li>", "en": "<li><b>Salesforce Source and Sink</b> connectors, and integration with <b>HashiCorp Vault</b> for secret management</li>" },
+    { "es": "<li>Despliegue en <b>Azure</b> (AKS, APIM, Azure SQL, Azure Queue) con pipelines CI/CD en <b>Jenkins y GitHub Actions</b></li>", "en": "<li>Deployment on <b>Azure</b> (AKS, APIM, Azure SQL, Azure Queue) with CI/CD pipelines in <b>Jenkins and GitHub Actions</b></li>" },
+    { "es": "<li>Calidad y seguridad del código: <b>JUnit 5, Mockito, SonarQube, Checkstyle, Fortify y JFrog Xray</b></li>", "en": "<li>Code quality and security: <b>JUnit 5, Mockito, SonarQube, Checkstyle, Fortify and JFrog Xray</b></li>" },
+    { "es": "<li>Soporte técnico y funcional a usuarios de <b>Salesforce</b> en los flujos de desembolsos, cartas fianza, pagarés y descuento de letras y facturas</li>", "en": "<li>Technical and functional support for <b>Salesforce</b> users across the disbursement, bank guarantee, promissory note and invoice discounting flows</li>" },
+
+    { "es": "<li>Diseño de APIs RESTful <b>Design First</b> con las especificaciones <b>OpenAPI y AsyncAPI</b></li>", "en": "<li>RESTful API design, <b>Design First</b>, with the <b>OpenAPI and AsyncAPI</b> specifications</li>" },
+    { "es": "<li>Microservicios reactivos con <b>RxJava, Spring WebFlux y Quarkus</b> (Java 11, 17 y 21)</li>", "en": "<li>Reactive microservices with <b>RxJava, Spring WebFlux and Quarkus</b> (Java 11, 17 and 21)</li>" },
+    { "es": "<li>Microservicios asíncronos con tópicos <b>Kafka</b> y formato <b>Avro</b>, más conectores Salesforce source y sink</li>", "en": "<li>Asynchronous microservices with <b>Kafka</b> topics and <b>Avro</b> format, plus Salesforce source and sink connectors</li>" },
+    { "es": "<li>Gestión segura de secretos con <b>HashiCorp Vault</b></li>", "en": "<li>Secure secret management with <b>HashiCorp Vault</b></li>" },
+    { "es": "<li>Infraestructura en <b>Azure</b> (AKS, APIM, Azure SQL) y pruebas e2e con <b>Postman, Kibana y Grafana</b></li>", "en": "<li>Infrastructure on <b>Azure</b> (AKS, APIM, Azure SQL) and e2e testing with <b>Postman, Kibana and Grafana</b></li>" },
+    { "es": "<li>Pruebas unitarias con <b>JUnit 5 y Mockito</b>; reglas de codificación con <b>Checkstyle y SonarQube</b></li>", "en": "<li>Unit testing with <b>JUnit 5 and Mockito</b>; coding rules with <b>Checkstyle and SonarQube</b></li>" },
+    { "es": "<li>Pases a producción con pipelines automatizados en <b>Jenkins y GitHub Actions</b>, y OCDs para reducir tiempos</li>", "en": "<li>Production releases with automated pipelines in <b>Jenkins and GitHub Actions</b>, and OCDs to cut turnaround times</li>" },
+
+    { "es": "<li>Diseño de servicios con <b>API Design Tools</b> y revisión de documentos D520 y metadata técnica</li>", "en": "<li>Service design with <b>API Design Tools</b>, plus review of D520 documents and technical metadata</li>" },
+    { "es": "<li>Desarrollo de servicios y microservicios <b>ASO</b> con <b>Java 8 y 17</b> y <b>Spring Boot</b></li>", "en": "<li>Development of <b>ASO</b> services and microservices with <b>Java 8 and 17</b> and <b>Spring Boot</b></li>" },
+    { "es": "<li>Integración con backends de tipo <b>APX, HOST y REST</b></li>", "en": "<li>Integration with <b>APX, HOST and REST</b> backends</li>" },
+    { "es": "<li>Pruebas unitarias con <b>JUnit 5</b> y verificación de coverage en <b>SonarQube</b></li>", "en": "<li>Unit testing with <b>JUnit 5</b> and coverage verification in <b>SonarQube</b></li>" },
+    { "es": "<li>Rol de gestor de servicios para los pases a producción</li>", "en": "<li>Service manager role for production releases</li>" },
+
+    { "es": "<h2>Conocimiento</h2>", "en": "<h2>Skills</h2>" },
+
+    { "es": "Estas son las tecnologías con las que trabajo, agrupadas por dónde encajan. El backend en Java y su ecosistema, junto con la mensajería y el despliegue en la nube, es donde tengo más recorrido; el resto lo uso cuando el proyecto lo pide.", "en": "These are the technologies I work with, grouped by where they fit. Java backend and its\n                    ecosystem, together with messaging and cloud deployment, is where I have the most\n                    mileage; the rest I use when a project calls for it." },
+
+    { "es": "<h3>Eventos e integración</h3>", "en": "<h3>Events and integration</h3>" },
+    { "es": "<h3>Cloud y DevOps</h3>", "en": "<h3>Cloud and DevOps</h3>" },
+    { "es": "<h3>Calidad y observabilidad</h3>", "en": "<h3>Quality and observability</h3>" },
+    { "es": "<h3>Bases de datos</h3>", "en": "<h3>Databases</h3>" },
+    { "es": "<h3>Frontend y móvil</h3>", "en": "<h3>Frontend and mobile</h3>" },
+
+    { "es": "<h2>Mis Proyectos</h2>", "en": "<h2>My Projects</h2>" },
+
+    { "es": "aria-label=\"Filtrar proyectos por categoría\"", "en": "aria-label=\"Filter projects by category\"" },
+    { "es": "data-filtro=\"todos\" aria-pressed=\"true\">Todos</button>", "en": "data-filtro=\"todos\" aria-pressed=\"true\">All</button>" },
+
+    { "es": "<span class=\"visually-hidden\">Anterior</span>", "en": "<span class=\"visually-hidden\">Previous</span>", "veces": 7 },
+    { "es": "<span class=\"visually-hidden\">Siguiente</span>", "en": "<span class=\"visually-hidden\">Next</span>", "veces": 7 },
+
+    { "es": "Ver en GitHub <svg class=\"icono\"", "en": "View on GitHub <svg class=\"icono\"", "veces": 7 },
+
+    { "es": "<h3 class=\"proyecto-titulo\">API REST para licorería «El punto»</h3>", "en": "<h3 class=\"proyecto-titulo\">REST API for «El punto» liquor store</h3>" },
+    { "es": "(API REST para licorería «El punto», opens in a new tab)", "en": "(REST API for «El punto» liquor store, opens in a new tab)" },
+    { "es": "of the project API REST para licorería «El punto»", "en": "of the project REST API for «El punto» liquor store", "veces": 3 },
+
+    { "es": "No hay proyectos en esta categoría todavía.", "en": "No projects in this category yet." },
+
+    { "es": "<span class=\"span-proyectos\">Puedes ver más sobre mis proyectos en", "en": "<span class=\"span-proyectos\">You can see more of my work on" },
+
+    { "es": "<h2>Contacto</h2>", "en": "<h2>Contact</h2>" },
+    { "es": "<h3>¿Quieres ponerte en contacto conmigo?</h3>", "en": "<h3>Want to get in touch?</h3>" },
+
+    { "es": "Escríbeme por el formulario y te respondo lo antes posible. Si prefieres, también estoy en LinkedIn y GitHub (los enlaces están al pie de la página).", "en": "Drop me a line through the form and I'll get back to you as soon as I can. If you\n                                prefer, I'm also on LinkedIn and GitHub (the links are in the footer)." },
+
+    { "es": "Espero que te haya gustado lo que viste. Un gusto.", "en": "I hope you liked what you saw. A pleasure." },
+
+    { "es": "class=\"form-label\">Nombres</label>", "en": "class=\"form-label\">First name</label>" },
+    { "es": "placeholder=\"Nombres\"", "en": "placeholder=\"First name\"" },
+    { "es": "<div class=\"invalid-feedback\">Escribe tu nombre.</div>", "en": "<div class=\"invalid-feedback\">Please enter your first name.</div>" },
+
+    { "es": "class=\"form-label\">Apellidos</label>", "en": "class=\"form-label\">Last name</label>" },
+    { "es": "placeholder=\"Apellidos\"", "en": "placeholder=\"Last name\"" },
+    { "es": "<div class=\"invalid-feedback\">Escribe tus apellidos.</div>", "en": "<div class=\"invalid-feedback\">Please enter your last name.</div>" },
+
+    { "es": "class=\"form-label\">Correo electrónico</label>", "en": "class=\"form-label\">Email address</label>" },
+    { "es": "placeholder=\"usuario@ejemplo.com\"", "en": "placeholder=\"you@example.com\"" },
+    { "es": "<div class=\"invalid-feedback\">Necesito un correo válido para responderte.</div>", "en": "<div class=\"invalid-feedback\">I need a valid email address to reply to you.</div>" },
+
+    { "es": "class=\"form-label\">Mensaje</label>", "en": "class=\"form-label\">Message</label>" },
+    { "es": "placeholder=\"Cuéntame en qué puedo ayudarte\"", "en": "placeholder=\"Tell me how I can help\"" },
+    { "es": "<div class=\"invalid-feedback\">Escribe un mensaje de al menos 10 caracteres.</div>", "en": "<div class=\"invalid-feedback\">Please write a message of at least 10 characters.</div>" },
+
+    { "es": "value=\"Nuevo mensaje desde el portfolio\"", "en": "value=\"New message from the portfolio\"" },
+    { "es": "value=\"https://sebastian-reyes.github.io/portfolio/#contacto\"", "en": "value=\"https://sebastian-reyes.github.io/portfolio/en/#contacto\"" },
+
+    { "es": "Enviar mensaje <svg class=\"icono\"", "en": "Send message <svg class=\"icono\"" },
+
+    { "es": "<span class=\"visually-hidden\">GitHub de Sebastián Reyes</span>", "en": "<span class=\"visually-hidden\">Sebastián Reyes on GitHub</span>" },
+    { "es": "<span class=\"visually-hidden\">LinkedIn de Sebastián Reyes</span>", "en": "<span class=\"visually-hidden\">Sebastián Reyes on LinkedIn</span>" },
+
+    { "es": "<b>Todos los derechos reservados</b>. Diseñado y desarrollado por Sebastián Reyes", "en": "<b>All rights reserved</b>. Designed and developed by\n                Sebastián Reyes" }
+  ]
+}

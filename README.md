@@ -26,16 +26,24 @@ No hay peticiones a terceros: ni CDN, ni Google Fonts, ni Font Awesome.
 
 ```
 .
-├── index.html              # única página del sitio
+├── index.html              # única página del sitio, en español (fuente)
 ├── styles.css              # estilos propios y variables de tema
 ├── scripts.js              # tema, navbar, carruseles, filtro, reveal, validación
-├── build.mjs               # incrusta styles.css en index.html y arma dist/
+├── build.mjs               # incrusta el CSS, traduce y arma dist/
+├── i18n/en.json            # tabla de traducción al inglés
 ├── fonts/                  # Poppins 300/400/600, subset latin
 ├── img/                    # capturas (WebP), iconos y og-image
 ├── robots.txt
 ├── sitemap.xml
 └── .github/workflows/deploy.yml
 ```
+
+El sitio publicado tiene dos páginas:
+
+| URL | idioma |
+|---|---|
+| `/portfolio/` | español (por defecto) |
+| `/portfolio/en/` | inglés |
 
 `styles.css` va en la **raíz**, no en `css/`, a propósito: así las rutas `img/…` y
 `fonts/…` que contiene resuelven igual esté suelto o incrustado en `index.html`, y
@@ -55,11 +63,13 @@ servidor para que las rutas relativas y el `localStorage` se comporten como en p
 
 ## Build y despliegue
 
-`build.mjs` genera `dist/` con el CSS incrustado dentro del `<style>` del `<head>`,
-para que la página no tenga ninguna hoja de estilos bloqueando el render:
+`build.mjs` genera `dist/` con las dos páginas y el CSS incrustado dentro del `<style>`
+del `<head>`, para que ninguna tenga hojas de estilos bloqueando el render:
 
 ```bash
-node build.mjs   # -> dist/
+node build.mjs
+# dist/index.html      [es]
+# dist/en/index.html   [en]  104 cadenas traducidas
 ```
 
 El workflow `.github/workflows/deploy.yml` lo ejecuta en cada push a `master` y publica
@@ -70,6 +80,63 @@ Si añades un archivo nuevo en la raíz que deba publicarse (`CNAME`, `_headers`
 súmalo al array `RECURSOS` de `build.mjs` o no llegará al sitio. `build.mjs` falla con
 código 1 si `index.html` deja de enlazar `styles.css` con la forma esperada, así que el
 despliegue se corta antes de publicar una página sin estilos.
+
+## Idiomas
+
+**Hay un solo HTML fuente, en español.** La versión en inglés se genera en el build
+aplicando `i18n/en.json` sobre `index.html`. No existe un segundo HTML que mantener,
+que es justo lo que se desincroniza a las dos semanas.
+
+`i18n/en.json` traduce **bloques de HTML completos**, no palabras sueltas:
+
+```json
+{ "es": "Soy <b>Backend Java Software Engineer</b> con más de 4 años…",
+  "en": "I'm a <b>Backend Java Software Engineer</b> with more than 4 years…" }
+```
+
+Se traduce con el marcado dentro a propósito. El texto está partido por `<b>`, y en
+español el énfasis cae en sitios donde en inglés no encaja; llevando el `<b>` en la
+traducción, cada idioma pone la negrita donde le corresponde. Los espacios y saltos de
+línea no importan al buscar: el build compara con `\s+`.
+
+Cada entrada acepta `veces` (cuántas apariciones espera, 1 por defecto). Además hay
+`patrones`, para lo repetitivo con estructura fija:
+
+```json
+{ "buscar": "Captura (\\d+) de (\\d+) del proyecto ",
+  "poner": "Screenshot $1 of $2 of the project ", "minimo": 22 }
+```
+
+**El build aborta con código 1 si una entrada no aparece exactamente las veces
+esperadas.** O sea: si cambias una frase en `index.html` y olvidas la traducción, el
+despliegue falla en vez de publicar media página en español. Es la propiedad que hace
+que este enfoque no se pudra.
+
+### Añadir o cambiar texto
+
+1. Edita `index.html` como siempre.
+2. Ejecuta `node build.mjs`. Si tocaste algo traducido, te dirá exactamente qué entrada
+   quedó huérfana.
+3. Actualiza esa entrada en `i18n/en.json`.
+
+### Añadir otro idioma
+
+Copia `i18n/en.json` a `i18n/<código>.json`, tradúcelo y añade el código al array
+`IDIOMAS` de `build.mjs`. El selector de idioma del navbar es una entrada más de la
+tabla (cambia el `href` y la etiqueta), así que habría que replantearlo si pasas de dos.
+
+### Rutas y SEO
+
+La página en inglés vive un nivel más abajo, así que el build reescribe sus rutas
+relativas con el prefijo `../` (ver `PREFIJOS` en `build.mjs`). Después **comprueba
+contra el disco que cada ruta referenciada existe de verdad** en `dist/`, en las dos
+páginas. Esa verificación es la que vale: una comprobación por texto no detecta una ruta
+malformada, porque simplemente no casa con el patrón y se salta el chequeo.
+
+Cada página lleva su `<html lang>`, su `canonical` y el juego completo de `hreflang`
+(`es`, `en`, `x-default`), y `sitemap.xml` declara las dos URLs con sus alternates.
+No hay redirección automática por idioma del navegador: rompe el botón atrás y confunde
+a los rastreadores. El cambio es explícito, con el selector del navbar.
 
 ## Rendimiento
 
@@ -129,6 +196,12 @@ La carga inicial son **7 peticiones a un solo origen, ~64 kB** (HTML 15 kB gz + 
 - **`.fixed-top` va después de `.navbar`** en la hoja. Las dos reglas tienen la misma
   especificidad y compiten por `position`; si `.fixed-top` va antes, la navbar deja de
   ser fija. En Bootstrap funcionaba porque las utilidades se cargan al final.
+- **`ol, ul { margin-top: 0 }`** hace falta explícitamente. El Reboot de Bootstrap lo
+  traía y al reescribir el CSS solo se repuso `margin-bottom`, así que `.navbar-nav`
+  heredaba el `margin-block-start: 1em` por defecto del navegador: los enlaces caían 8px
+  por debajo del centro del navbar y la barra medía 16px de más. Al quitar un framework,
+  los agujeros no están en lo que escribes mal, sino en las reglas del reset que no
+  sabías que te estaban sosteniendo.
 
 ## Cómo añadir un proyecto
 

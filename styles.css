@@ -57,6 +57,11 @@ p {
     margin-top: 0;
 }
 
+ol,
+ul {
+    margin-top: 0;
+}
+
 b,
 strong {
     font-weight: bolder;
@@ -661,6 +666,30 @@ body {
     color: #ffffff;
     font-weight: 500;
     transition: background 0.25s ease, color 0.25s ease;
+}
+
+.selector-idioma {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    padding-inline: 0.62rem;
+    border: 1px solid currentColor;
+    border-radius: 16px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    opacity: 0.7;
+    flex-shrink: 0;
+    transition: opacity 0.25s ease, background-color 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.selector-idioma:hover,
+.selector-idioma:focus-visible {
+    opacity: 1;
+    background: color-mix(in srgb, currentColor 14%, transparent);
 }
 
 .btn-theme-toggle {
@@ -1489,7 +1518,8 @@ html.dark-mode .logo-oscuro {
 .navbar,
 .navbar .nav-link,
 .navbar .navbar-brand,
-.navbar .btn-theme-toggle {
+.navbar .btn-theme-toggle,
+.navbar .selector-idioma {
     color: #ffffff;
 }
 
@@ -1499,6 +1529,49 @@ html.dark-mode .logo-oscuro {
     letter-spacing: 0.02em;
 }
 
+@media (max-width: 575.98px) {
+    .navbar-brand {
+        font-size: 0.95rem;
+        margin-right: var(--espacio-xs);
+    }
+
+    .navbar-acciones {
+        gap: 0.35rem;
+    }
+
+    .btn-theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .selector-idioma {
+        height: 30px;
+        padding-inline: 0.5rem;
+    }
+
+    .navbar .navbar-toggler {
+        padding: 5px 8px;
+    }
+}
+
+@media (max-width: 374.98px) {
+    .navbar > .container {
+        padding-inline: 0.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.78rem;
+    }
+
+    .navbar-acciones {
+        gap: 0.25rem;
+    }
+
+    .navbar .navbar-toggler {
+        padding: 4px 7px;
+    }
+}
+
 .navbar-acciones {
     display: flex;
     align-items: center;
@@ -1506,9 +1579,10 @@ html.dark-mode .logo-oscuro {
 }
 
 @media (min-width: 992px) {
-    
+
     .navbar-acciones {
         order: 3;
+        margin-left: var(--espacio-s);
     }
 }
 
@@ -1532,7 +1606,8 @@ html.dark-mode .logo-oscuro {
 .navbar.desplazado,
 .navbar.desplazado .nav-link,
 .navbar.desplazado .navbar-brand,
-.navbar.desplazado .btn-theme-toggle {
+.navbar.desplazado .btn-theme-toggle,
+.navbar.desplazado .selector-idioma {
     color: var(--text-primary);
 }
 

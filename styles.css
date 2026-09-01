@@ -1428,6 +1428,82 @@ html.dark-mode .logo-oscuro {
     justify-content: flex-start;
 }
 
+.proyecto-enlaces {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espacio-s);
+}
+
+.proyecto-destacado-cuerpo {
+    display: grid;
+    gap: var(--espacio-m);
+    align-items: center;
+}
+
+.proyecto-destacado-media {
+    min-width: 0;
+}
+
+.proyecto-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--espacio-xs);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--acento);
+}
+
+.proyecto-etiqueta::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 4px rgba(1, 98, 200, 0.16);
+}
+
+html.dark-mode .proyecto-etiqueta::before {
+    box-shadow: 0 0 0 4px rgba(77, 159, 255, 0.2);
+}
+
+.proyecto-destacado .proyecto-titulo {
+    font-size: 1.6rem;
+}
+
+.proyecto-resumen {
+    color: var(--text-secondary);
+    max-width: var(--medida);
+    margin-bottom: 0;
+}
+
+.proyecto-destacado .lista-tecnologias-proyecto {
+    margin-bottom: var(--espacio-s);
+}
+
+.enlace-demo {
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, var(--acento), var(--acento-claro));
+    color: #ffffff;
+    box-shadow: var(--sombra);
+}
+
+.enlace-demo:hover,
+.enlace-demo:focus-visible {
+    text-decoration: none;
+    box-shadow: var(--sombra-fuerte);
+}
+
+@media (min-width: 992px) {
+    .proyecto-destacado-cuerpo {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    }
+}
+
 .proyecto-item .carousel {
     overflow: hidden;
 }

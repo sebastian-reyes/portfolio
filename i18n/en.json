@@ -127,14 +127,18 @@
     { "es": "aria-label=\"Filtrar proyectos por categoría\"", "en": "aria-label=\"Filter projects by category\"" },
     { "es": "data-filtro=\"todos\" aria-pressed=\"true\">Todos</button>", "en": "data-filtro=\"todos\" aria-pressed=\"true\">All</button>" },
 
+    { "es": "<p class=\"proyecto-etiqueta\">Proyecto destacado · en producción</p>", "en": "<p class=\"proyecto-etiqueta\">Featured project · live in production</p>" },
+    { "es": "Una app de finanzas personales para saber en qué se va el dinero sin pelearse con una\n                                hoja de cálculo: se apunta el gasto en dos toques y la app lo reparte por categoría y\n                                por tag. Detrás hay una API reactiva de extremo a extremo —<b>WebFlux sobre R2DBC</b>,\n                                sin un solo bloqueo contra PostgreSQL— con el contrato en <b>OpenAPI</b> como fuente de\n                                verdad y los <b>JWT</b> validados como resource server. El front es una SPA de\n                                <b>Angular</b> con signals, gráficos y modo oscuro, instalable como PWA.", "en": "A personal finance app for seeing where the money goes without wrestling with a\n                                spreadsheet: you log an expense in two taps and the app splits it by category and by\n                                tag. Behind it sits an API that is reactive end to end —<b>WebFlux over R2DBC</b>, not\n                                a single blocking call against PostgreSQL— with the <b>OpenAPI</b> contract as the\n                                source of truth and <b>JWT</b>s validated as a resource server. The frontend is an\n                                <b>Angular</b> SPA with signals, charts and dark mode, installable as a PWA." },
+    { "es": "Ver la demo <svg class=\"icono\"", "en": "View the demo <svg class=\"icono\"" },
+    { "es": "el panel con el resumen del mes y los gráficos de gasto", "en": "the dashboard with the monthly summary and the spending charts" },
+    { "es": "el listado de movimientos con sus filtros", "en": "the transaction list with its filters" },
+    { "es": "el mantenimiento de categorías por tipo", "en": "the category management screen, grouped by type" },
+    { "es": "el mismo panel en tema claro", "en": "the same dashboard in light theme" },
+
     { "es": "<span class=\"visually-hidden\">Anterior</span>", "en": "<span class=\"visually-hidden\">Previous</span>", "veces": 7 },
     { "es": "<span class=\"visually-hidden\">Siguiente</span>", "en": "<span class=\"visually-hidden\">Next</span>", "veces": 7 },
 
-    { "es": "Ver en GitHub <svg class=\"icono\"", "en": "View on GitHub <svg class=\"icono\"", "veces": 7 },
-
-    { "es": "<h3 class=\"proyecto-titulo\">API REST para licorería «El punto»</h3>", "en": "<h3 class=\"proyecto-titulo\">REST API for «El punto» liquor store</h3>" },
-    { "es": "(API REST para licorería «El punto», opens in a new tab)", "en": "(REST API for «El punto» liquor store, opens in a new tab)" },
-    { "es": "of the project API REST para licorería «El punto»", "en": "of the project REST API for «El punto» liquor store", "veces": 3 },
+    { "es": "Ver en GitHub <svg class=\"icono\"", "en": "View on GitHub <svg class=\"icono\"", "veces": 6 },
 
     { "es": "No hay proyectos en esta categoría todavía.", "en": "No projects in this category yet." },
 

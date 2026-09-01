@@ -209,12 +209,22 @@ Hay **una sola tarjeta por proyecto** y el filtrado se hace por `data-categoria`
 Para añadir uno, copia un `<article class="… proyecto-item">` dentro de
 `#grid-proyectos` y ajusta:
 
-- `data-categoria` — una de `api`, `webapp`, `landing` (deben coincidir con los
-  `data-filtro` de los botones; si añades una categoría nueva, añade su botón)
+- `data-categoria` — una de `api`, `fullstack`, `webapp`, `landing` (deben coincidir
+  con los `data-filtro` de los botones; si añades una categoría nueva, añade su botón)
 - el `id` del carrusel (`scripts.js` lo localiza solo; los botones llevan
   `data-slide="prev"` / `data-slide="next"` y no necesitan apuntar a ningún id)
 - las imágenes (WebP, ancho máximo 1140 px, con `width`, `height` y `loading="lazy"`)
 - los `<li class="tech-chip">` y el enlace `.enlace-proyecto`
+
+### La tarjeta destacada
+
+FinScope usa una variante: `col-12` + `.proyecto-destacado`, con el carrusel y el texto
+repartidos por `.proyecto-destacado-cuerpo`, que es un grid de dos columnas a partir de
+992 px y una sola por debajo. Aporta `.proyecto-etiqueta` (el punto con el rótulo),
+`.proyecto-resumen` (el párrafo, limitado a `--medida`) y `.proyecto-enlaces`, que
+permite varios `.enlace-proyecto` en fila —el primero con `.enlace-demo`, que lo pinta
+como botón—. Es el único proyecto con demo pública y con dos repositorios, y por eso es
+el único que no encaja en el patrón de «un enlace a GitHub por tarjeta».
 
 ## Cómo añadir un icono
 

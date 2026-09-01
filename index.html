@@ -118,6 +118,11 @@
             <path d="M21.4 2.6 10.9 13.1" />
             <path d="M21.4 2.6 14.9 21.2l-3.9-8.1-8.1-3.9z" />
         </symbol>
+        <symbol id="i-enlace" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 4h6v6" />
+            <path d="M20 4 11 13" />
+            <path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
+        </symbol>
     </svg>
     <div class="progressbar" id="progressbar"></div>
     <div class="scrollPath"></div>
@@ -576,10 +581,86 @@
                 <div class="filtros-proyectos" role="group" aria-label="Filtrar proyectos por categoría">
                     <button type="button" class="filtro-proyecto activo" data-filtro="todos" aria-pressed="true">Todos</button>
                     <button type="button" class="filtro-proyecto" data-filtro="api" aria-pressed="false">API Services</button>
+                    <button type="button" class="filtro-proyecto" data-filtro="fullstack" aria-pressed="false">Full Stack</button>
                     <button type="button" class="filtro-proyecto" data-filtro="webapp" aria-pressed="false">Web Apps</button>
                     <button type="button" class="filtro-proyecto" data-filtro="landing" aria-pressed="false">Landing Pages</button>
                 </div>
                 <div class="row mt-4" id="grid-proyectos">
+                <article class="col-12 mb-4 proyecto-item proyecto-destacado" data-categoria="fullstack">
+                    <div class="proyecto-destacado-cuerpo">
+                        <div class="proyecto-destacado-media">
+                            <div id="carousel-finscope" class="proyecto-rounded carousel slide proyecto-shadow">
+                                <div class="carousel-inner proyecto-rounded">
+                            <div class="carousel-item active">
+                                <img src="img/proyectos/finscope/finscope-1.webp" class="d-block w-100" width="1140" height="641" loading="lazy" decoding="async"
+                                    alt="Captura 1 de 4 del proyecto FinScope: el panel con el resumen del mes y los gráficos de gasto">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/proyectos/finscope/finscope-2.webp" class="d-block w-100" width="1140" height="641" loading="lazy" decoding="async"
+                                    alt="Captura 2 de 4 del proyecto FinScope: el listado de movimientos con sus filtros">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/proyectos/finscope/finscope-3.webp" class="d-block w-100" width="1140" height="641" loading="lazy" decoding="async"
+                                    alt="Captura 3 de 4 del proyecto FinScope: el mantenimiento de categorías por tipo">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/proyectos/finscope/finscope-4.webp" class="d-block w-100" width="1140" height="641" loading="lazy" decoding="async"
+                                    alt="Captura 4 de 4 del proyecto FinScope: el mismo panel en tema claro">
+                            </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="proyecto-destacado-info">
+                            <p class="proyecto-etiqueta">Proyecto destacado · en producción</p>
+                            <h3 class="proyecto-titulo">FinScope</h3>
+                            <p class="proyecto-resumen">
+                                Una app de finanzas personales para saber en qué se va el dinero sin pelearse con una
+                                hoja de cálculo: se apunta el gasto en dos toques y la app lo reparte por categoría y
+                                por tag. Detrás hay una API reactiva de extremo a extremo —<b>WebFlux sobre R2DBC</b>,
+                                sin un solo bloqueo contra PostgreSQL— con el contrato en <b>OpenAPI</b> como fuente de
+                                verdad y los <b>JWT</b> validados como resource server. El front es una SPA de
+                                <b>Angular</b> con signals, gráficos y modo oscuro, instalable como PWA.
+                            </p>
+                            <ul class="lista-tecnologias-proyecto">
+                                <li class="tech-chip">Java 25</li>
+                                <li class="tech-chip">Spring Boot 4</li>
+                                <li class="tech-chip">WebFlux</li>
+                                <li class="tech-chip">R2DBC</li>
+                                <li class="tech-chip">PostgreSQL</li>
+                                <li class="tech-chip">Flyway</li>
+                                <li class="tech-chip">JWT</li>
+                                <li class="tech-chip">OpenAPI</li>
+                                <li class="tech-chip">MapStruct</li>
+                                <li class="tech-chip">Angular 22</li>
+                                <li class="tech-chip">TypeScript</li>
+                                <li class="tech-chip">Chart.js</li>
+                                <li class="tech-chip">Docker</li>
+                            </ul>
+                            <div class="proyecto-enlaces">
+                                <a class="enlace-proyecto enlace-demo" href="https://finscope-web-uwmb.onrender.com/" target="_blank" rel="noopener noreferrer">
+                                    Ver la demo <svg class="icono" aria-hidden="true"><use href="#i-enlace"></use></svg>
+                                    <span class="visually-hidden">(FinScope, se abre en una pestaña nueva)</span>
+                                </a>
+                                <a class="enlace-proyecto" href="https://github.com/sebastian-reyes/finscope-api" target="_blank" rel="noopener noreferrer">
+                                    API <svg class="icono" aria-hidden="true"><use href="#i-github"></use></svg>
+                                    <span class="visually-hidden">(FinScope API, se abre en una pestaña nueva)</span>
+                                </a>
+                                <a class="enlace-proyecto" href="https://github.com/sebastian-reyes/finscope-web" target="_blank" rel="noopener noreferrer">
+                                    Web <svg class="icono" aria-hidden="true"><use href="#i-github"></use></svg>
+                                    <span class="visually-hidden">(FinScope Web, se abre en una pestaña nueva)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
                 <article class="col-lg-6 mb-4 proyecto-item" data-categoria="api">
                     <h3 class="proyecto-titulo">UTP+ parking API</h3>
                     <div id="carousel-utp-parking-api" class="proyecto-rounded carousel slide proyecto-shadow">
@@ -774,42 +855,6 @@
                     <a class="enlace-proyecto" href="https://github.com/sebastian-reyes/world-api" target="_blank" rel="noopener noreferrer">
                         Ver en GitHub <svg class="icono" aria-hidden="true"><use href="#i-github"></use></svg>
                         <span class="visually-hidden">(World API, se abre en una pestaña nueva)</span>
-                    </a>
-                </article>
-                <article class="col-lg-6 mb-4 proyecto-item" data-categoria="api">
-                    <h3 class="proyecto-titulo">API REST para licorería «El punto»</h3>
-                    <div id="carousel-api-elpunto" class="proyecto-rounded carousel slide proyecto-shadow">
-                        <div class="carousel-inner proyecto-rounded">
-                            <div class="carousel-item active">
-                                <img src="img/proyectos/api-elpunto/api-elpunto1.webp" class="d-block w-100" width="1140" height="641" loading="lazy" decoding="async"
-                                    alt="Captura 1 de 3 del proyecto API REST para licorería «El punto»">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/proyectos/api-elpunto/api-elpunto2.webp" class="d-block w-100" width="1140" height="641" loading="lazy" decoding="async"
-                                    alt="Captura 2 de 3 del proyecto API REST para licorería «El punto»">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/proyectos/api-elpunto/api-elpunto3.webp" class="d-block w-100" width="1140" height="641" loading="lazy" decoding="async"
-                                    alt="Captura 3 de 3 del proyecto API REST para licorería «El punto»">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Anterior</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Siguiente</span>
-                        </button>
-                    </div>
-                    <ul class="lista-tecnologias-proyecto">
-                        <li class="tech-chip">Java 14</li>
-                        <li class="tech-chip">Spring Boot</li>
-                        <li class="tech-chip">MariaDB</li>
-                    </ul>
-                    <a class="enlace-proyecto" href="https://github.com/sebastian-reyes/API_Spring_ElPunto" target="_blank" rel="noopener noreferrer">
-                        Ver en GitHub <svg class="icono" aria-hidden="true"><use href="#i-github"></use></svg>
-                        <span class="visually-hidden">(API REST para licorería «El punto», se abre en una pestaña nueva)</span>
                     </a>
                 </article>
                 <article class="col-lg-6 mb-4 proyecto-item" data-categoria="landing">
